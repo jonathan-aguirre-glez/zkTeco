@@ -16,5 +16,18 @@ namespace PlenussZKTeco1
         {
             InitializeComponent();
         }
+
+        public zkemkeeper.CZKEMClass aparato = new zkemkeeper.CZKEMClass();
+
+
+        #region Communication
+        private bool bIsConnected = false;
+        private int iMachineNumber = 1;
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Console.Write("Hola");
+        }
+        #endregion
     }
 }
