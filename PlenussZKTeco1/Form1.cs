@@ -20,8 +20,7 @@ namespace PlenussZKTeco1
             portTB.Text = Properties.Settings.Default.Puerto;
             ipTB.Text = Properties.Settings.Default.IP;
             aparato.OnAttTransactionEx += Aparato_OnAttTransactionEx;
-            aparato.`
-            .
+
 
         }
 
