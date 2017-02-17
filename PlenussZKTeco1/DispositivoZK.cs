@@ -15,9 +15,8 @@ namespace PlenussZKTeco1
         public DateTime fecha_alta { get; set; }
         public DateTime ult_lectura { get; set; }
 
-        public DispositivoZK()
+        public DispositivoZK(string nombre, string IP, int Puerto)
         {
-
         }
 
         /// <summary> 

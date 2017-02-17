@@ -18,21 +18,43 @@ namespace PlenussZKTeco1
 
     public partial class Main : Form
     {
+        DispositivoZK Dispositivos = new DispositivoZK("Matriz","192.168.1.201",4370);
+
         ODBCWrapper conexion = new ODBCWrapper("config.ini");
         ContextMenu mnuContextMenu = new ContextMenu();
         public Main()
         {
             InitializeComponent();
             connect();
+           
 
+             
+          
+
+        }
+         async Task connect(DispositivoZK disp)
+        {
+            await Task.Run(() =>
+            {
+                toolStripStatusLabel1.Text = "Conectando dispositivo";
+                if (Dispositivos.Connect_Net("192.168.1.201", 4370)) MessageBox.Show("Conectado");
+                else
+                {
+                    MessageBox.Show("No");
+                    toolStripStatusLabel1.Text = "Error al conectarse";
+                }
+            });
+                
+      
+            
+        }
+
+        private void Dispositivos_OnDisConnected()
+        {
+            MessageBox.Show("Desconectado");
         }
 
         private void configToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void Main_Load(object sender, EventArgs e)
         {
 
         }
@@ -61,6 +83,16 @@ namespace PlenussZKTeco1
                 //Console.WriteLine(meta[1]);
             }
 
+        }
+
+        private void reportesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            
+        }
+
+        private async void Main_Load(object sender, EventArgs e)
+        {
+            await connect(Dispositivos);
         }
     }
 }

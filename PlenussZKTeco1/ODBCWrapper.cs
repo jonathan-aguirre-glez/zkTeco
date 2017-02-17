@@ -85,6 +85,7 @@ namespace PlenussZKTeco1
             try
             {
                 conexion.Open();
+                
             }
             catch(Exception e)
             {

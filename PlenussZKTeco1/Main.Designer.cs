@@ -43,18 +43,21 @@
             this.Puerto = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Alta = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Ultima_Lectura = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.label1 = new System.Windows.Forms.Label();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.label2 = new System.Windows.Forms.Label();
+            this.Activo = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.activarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.verRegistrosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.Activo = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.label1 = new System.Windows.Forms.Label();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.label2 = new System.Windows.Forms.Label();
+            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.menuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            this.panel2.SuspendLayout();
             this.contextMenuStrip1.SuspendLayout();
+            this.panel2.SuspendLayout();
+            this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -104,6 +107,7 @@
             this.reportesToolStripMenuItem.Name = "reportesToolStripMenuItem";
             this.reportesToolStripMenuItem.Size = new System.Drawing.Size(65, 20);
             this.reportesToolStripMenuItem.Text = "Reportes";
+            this.reportesToolStripMenuItem.Click += new System.EventHandler(this.reportesToolStripMenuItem_Click);
             // 
             // panel1
             // 
@@ -168,6 +172,32 @@
             this.Ultima_Lectura.Name = "Ultima_Lectura";
             this.Ultima_Lectura.ReadOnly = true;
             // 
+            // Activo
+            // 
+            this.Activo.HeaderText = "Column1";
+            this.Activo.Name = "Activo";
+            this.Activo.ReadOnly = true;
+            // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.activarToolStripMenuItem,
+            this.verRegistrosToolStripMenuItem});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(140, 48);
+            // 
+            // activarToolStripMenuItem
+            // 
+            this.activarToolStripMenuItem.Name = "activarToolStripMenuItem";
+            this.activarToolStripMenuItem.Size = new System.Drawing.Size(139, 22);
+            this.activarToolStripMenuItem.Text = "Activar";
+            // 
+            // verRegistrosToolStripMenuItem
+            // 
+            this.verRegistrosToolStripMenuItem.Name = "verRegistrosToolStripMenuItem";
+            this.verRegistrosToolStripMenuItem.Size = new System.Drawing.Size(139, 22);
+            this.verRegistrosToolStripMenuItem.Text = "Ver registros";
+            // 
             // label1
             // 
             this.label1.AutoSize = true;
@@ -194,37 +224,28 @@
             this.label2.TabIndex = 0;
             this.label2.Text = "Lecturas";
             // 
-            // contextMenuStrip1
+            // statusStrip1
             // 
-            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.activarToolStripMenuItem,
-            this.verRegistrosToolStripMenuItem});
-            this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(140, 48);
+            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripStatusLabel1});
+            this.statusStrip1.Location = new System.Drawing.Point(0, 366);
+            this.statusStrip1.Name = "statusStrip1";
+            this.statusStrip1.Size = new System.Drawing.Size(1069, 22);
+            this.statusStrip1.TabIndex = 3;
+            this.statusStrip1.Text = "statusStrip1";
             // 
-            // activarToolStripMenuItem
+            // toolStripStatusLabel1
             // 
-            this.activarToolStripMenuItem.Name = "activarToolStripMenuItem";
-            this.activarToolStripMenuItem.Size = new System.Drawing.Size(139, 22);
-            this.activarToolStripMenuItem.Text = "Activar";
-            // 
-            // verRegistrosToolStripMenuItem
-            // 
-            this.verRegistrosToolStripMenuItem.Name = "verRegistrosToolStripMenuItem";
-            this.verRegistrosToolStripMenuItem.Size = new System.Drawing.Size(139, 22);
-            this.verRegistrosToolStripMenuItem.Text = "Ver registros";
-            // 
-            // Activo
-            // 
-            this.Activo.HeaderText = "Column1";
-            this.Activo.Name = "Activo";
-            this.Activo.ReadOnly = true;
+            this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
+            this.toolStripStatusLabel1.Size = new System.Drawing.Size(118, 17);
+            this.toolStripStatusLabel1.Text = "toolStripStatusLabel1";
             // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1069, 388);
+            this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.menuStrip1);
@@ -237,9 +258,11 @@
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            this.contextMenuStrip1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
-            this.contextMenuStrip1.ResumeLayout(false);
+            this.statusStrip1.ResumeLayout(false);
+            this.statusStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -268,5 +291,7 @@
         private System.Windows.Forms.ToolStripMenuItem activarToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem verRegistrosToolStripMenuItem;
         private System.Windows.Forms.DataGridViewCheckBoxColumn Activo;
+        private System.Windows.Forms.StatusStrip statusStrip1;
+        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
     }
 }
