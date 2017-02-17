@@ -30,13 +30,21 @@
         {
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.configToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.configuracionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.dispositivosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.nuevoDispositivoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.reportesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.label1 = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.label1 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
-            this.configuracionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.Dispositivo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.IP = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Puerto = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Alta = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Ultima_Lectura = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.menuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -50,18 +58,40 @@
             this.reportesToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(812, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(1069, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
             // configToolStripMenuItem
             // 
             this.configToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.configuracionToolStripMenuItem});
+            this.configuracionToolStripMenuItem,
+            this.dispositivosToolStripMenuItem});
             this.configToolStripMenuItem.Name = "configToolStripMenuItem";
             this.configToolStripMenuItem.Size = new System.Drawing.Size(90, 20);
             this.configToolStripMenuItem.Text = "Herramientas";
             this.configToolStripMenuItem.Click += new System.EventHandler(this.configToolStripMenuItem_Click);
+            // 
+            // configuracionToolStripMenuItem
+            // 
+            this.configuracionToolStripMenuItem.Name = "configuracionToolStripMenuItem";
+            this.configuracionToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
+            this.configuracionToolStripMenuItem.Text = "Configuracion";
+            this.configuracionToolStripMenuItem.Click += new System.EventHandler(this.configuracionToolStripMenuItem_Click);
+            // 
+            // dispositivosToolStripMenuItem
+            // 
+            this.dispositivosToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.nuevoDispositivoToolStripMenuItem});
+            this.dispositivosToolStripMenuItem.Name = "dispositivosToolStripMenuItem";
+            this.dispositivosToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
+            this.dispositivosToolStripMenuItem.Text = "Dispositivos";
+            // 
+            // nuevoDispositivoToolStripMenuItem
+            // 
+            this.nuevoDispositivoToolStripMenuItem.Name = "nuevoDispositivoToolStripMenuItem";
+            this.nuevoDispositivoToolStripMenuItem.Size = new System.Drawing.Size(170, 22);
+            this.nuevoDispositivoToolStripMenuItem.Text = "Nuevo Dispositivo";
             // 
             // reportesToolStripMenuItem
             // 
@@ -75,8 +105,23 @@
             this.panel1.Controls.Add(this.label1);
             this.panel1.Location = new System.Drawing.Point(21, 27);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(329, 307);
+            this.panel1.Size = new System.Drawing.Size(675, 307);
             this.panel1.TabIndex = 1;
+            // 
+            // dataGridView1
+            // 
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Dispositivo,
+            this.Nombre,
+            this.IP,
+            this.Puerto,
+            this.Alta,
+            this.Ultima_Lectura});
+            this.dataGridView1.Location = new System.Drawing.Point(17, 38);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.Size = new System.Drawing.Size(643, 253);
+            this.dataGridView1.TabIndex = 1;
             // 
             // label1
             // 
@@ -87,18 +132,10 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Dispositivos";
             // 
-            // dataGridView1
-            // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(17, 38);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(297, 253);
-            this.dataGridView1.TabIndex = 1;
-            // 
             // panel2
             // 
             this.panel2.Controls.Add(this.label2);
-            this.panel2.Location = new System.Drawing.Point(388, 28);
+            this.panel2.Location = new System.Drawing.Point(755, 28);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(314, 306);
             this.panel2.TabIndex = 2;
@@ -112,23 +149,48 @@
             this.label2.TabIndex = 0;
             this.label2.Text = "Lecturas";
             // 
-            // configuracionToolStripMenuItem
+            // Dispositivo
             // 
-            this.configuracionToolStripMenuItem.Name = "configuracionToolStripMenuItem";
-            this.configuracionToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.configuracionToolStripMenuItem.Text = "Configuracion";
+            this.Dispositivo.HeaderText = "Dispositivo";
+            this.Dispositivo.Name = "Dispositivo";
+            // 
+            // Nombre
+            // 
+            this.Nombre.HeaderText = "Nombre";
+            this.Nombre.Name = "Nombre";
+            // 
+            // IP
+            // 
+            this.IP.HeaderText = "IP";
+            this.IP.Name = "IP";
+            // 
+            // Puerto
+            // 
+            this.Puerto.HeaderText = "Puerto";
+            this.Puerto.Name = "Puerto";
+            // 
+            // Alta
+            // 
+            this.Alta.HeaderText = "Alta";
+            this.Alta.Name = "Alta";
+            // 
+            // Ultima_Lectura
+            // 
+            this.Ultima_Lectura.HeaderText = "Ultima Lectura";
+            this.Ultima_Lectura.Name = "Ultima_Lectura";
             // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(812, 356);
+            this.ClientSize = new System.Drawing.Size(1069, 388);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Main";
-            this.Text = "Main";
+            this.Text = "Control de Asistencia";
+            this.Load += new System.EventHandler(this.Main_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.panel1.ResumeLayout(false);
@@ -152,5 +214,13 @@
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ToolStripMenuItem configuracionToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem dispositivosToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem nuevoDispositivoToolStripMenuItem;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Dispositivo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Nombre;
+        private System.Windows.Forms.DataGridViewTextBoxColumn IP;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Puerto;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Alta;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Ultima_Lectura;
     }
 }

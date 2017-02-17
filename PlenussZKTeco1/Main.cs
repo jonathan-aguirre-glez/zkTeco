@@ -17,38 +17,47 @@ namespace PlenussZKTeco1
 {
     public partial class Main : Form
     {
-        OdbcConnection conex;   
+        ODBCWrapper conexion = new ODBCWrapper("config.ini");   
         public Main()
         {
             InitializeComponent();
-            if (File.Exists(Environment.CurrentDirectory + "\\config.ini"))
-            {
-                var parser = new FileIniDataParser();
-                IniData data = parser.ReadFile("config.ini");
-                string odbc = data["Base"]["ODBC"];
-                MessageBox.Show(odbc);
-                conex = new OdbcConnection("Provider=SQLNCLI10;Data Source=" + odbc);
-                try
-                {
-                    MessageBox.Show("Server=RGARCIA-PC\\AVATTIA;Database=ZKTeko;User Id=sa;Password = aitva; ");
-                    conex.Open();
-                        }
-                catch (Exception) {
-                    MessageBox.Show("No se pudo conectar a la base de datos");
-                }
-                conex.Close();
-            }
-            else {
-                Configuracion config = new Configuracion();
-                config.ShowDialog();
-            }
-            
+            connect();
 
         }
 
         private void configToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void Main_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void configuracionToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Configuracion conf = new Configuracion();
+            conf.Tag = this;
+            conf.Show(this);
+            Hide();
+        }
+
+        public void connect()
+        {
+            Cursor = Cursors.AppStarting;
+            if (conexion.connect()) MessageBox.Show("Conexion Establecida");
+            else MessageBox.Show("Error en la conexion");
+            Cursor = Cursors.Default;
+            OdbcDataReader data = conexion.executeQuery("select * from p_disp;");
+            object[] meta = new object[6];
+
+            while (data.Read())
+            {
+                data.GetValues(meta);
+                dataGridView1.Rows.Add(meta);
+                //Console.WriteLine(meta[1]);
+            }
         }
     }
 }

@@ -21,7 +21,6 @@ namespace PlenussZKTeco1
             ipTB.Text = Properties.Settings.Default.IP;
             aparato.OnAttTransactionEx += Aparato_OnAttTransactionEx;
 
-
         }
 
         private async void Aparato_OnAttTransactionEx(string EnrollNumber, int IsInValid, int AttState, int VerifyMethod, int Year, int Month, int Day, int Hour, int Minute, int Second, int WorkCode)

@@ -15,9 +15,19 @@ namespace PlenussZKTeco1
 {
     public partial class Configuracion : Form
     {
+        FileIniDataParser parser;
+        IniData data;
         public Configuracion()
         {
             InitializeComponent();
+            if (File.Exists("config.ini"))
+            {
+                parser = new FileIniDataParser();
+                data = parser.ReadFile("config.ini");
+                odbcTb.Text = data["Base"]["ODBC"];
+                userTb.Text = data["Base"]["UID"];
+                passwordTb.Text = data["Base"]["PWD"]; 
+            }
         }
 
         private void saveBtn_Click(object sender, EventArgs e)
@@ -30,8 +40,14 @@ namespace PlenussZKTeco1
             IniData data = parser.ReadFile("config.ini");
             data.Sections.AddSection("Base");
             data.Sections.GetSectionData("Base").Keys.AddKey("ODBC", odbcTb.Text);
+            data.Sections.GetSectionData("Base").Keys.AddKey("UID", userTb.Text);
+            data.Sections.GetSectionData("Base").Keys.AddKey("PWD", passwordTb.Text);
             parser.WriteFile("config.ini", data);
             MessageBox.Show("Se guardo la configuracion");
+            var main = (Main)Tag;
+            main.Show();
+            Close();
+            main.connect();
         }
     }
 }
