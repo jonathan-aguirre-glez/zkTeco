@@ -60,6 +60,7 @@ namespace PlenussZKTeco1
                 dataGridView1.Rows.Add(meta);
                 //Console.WriteLine(meta[1]);
             }
+
         }
     }
 }

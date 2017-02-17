@@ -1,60 +1,74 @@
-﻿using System;
-using System.Runtime.InteropServices;
+﻿using IniParser;
+using IniParser.Model;
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
-namespace Ini
+namespace PlenussZKTeco1
 {
-    /// <summary>
-    /// Create a New INI file to store or load data
-    /// </summary>
-    public class IniFile
+    class IniFile
     {
-        public string path;
 
-        [DllImport("kernel32")]
-        private static extern long WritePrivateProfileString(string section,
-            string key, string val, string filePath);
-        [DllImport("kernel32")]
-        private static extern int GetPrivateProfileString(string section,
-                 string key, string def, StringBuilder retVal,
-            int size, string filePath);
+        /// <summary> 
+        /// Store for the name property.</summary> 
+        private string ConfigurationFile;
 
-        /// <summary>
-        /// INIFile Constructor.
-        /// </summary>
-        /// <PARAM name="INIPath"></PARAM>
-        public IniFile(string INIPath)
+        private string ODBC;
+        private string UID;
+        private string Password;
+
+        /// <summary> 
+        /// Receives a file path to the Ini file.</summary> 
+        public IniFile(string FilePath)
         {
-            path = INIPath;
-        }
-        /// <summary>
-        /// Write Data to the INI File
-        /// </summary>
-        /// <PARAM name="Section"></PARAM>
-        /// Section name
-        /// <PARAM name="Key"></PARAM>
-        /// Key Name
-        /// <PARAM name="Value"></PARAM>
-        /// Value Name
-        public void IniWriteValue(string Section, string Key, string Value)
-        {
-            WritePrivateProfileString(Section, Key, Value, this.path);
+            ConfigurationFile = FilePath;
+
         }
 
-        /// <summary>
-        /// Read Data Value From the Ini File
-        /// </summary>
-        /// <PARAM name="Section"></PARAM>
-        /// <PARAM name="Key"></PARAM>
-        /// <PARAM name="Path"></PARAM>
-        /// <returns></returns>
-        public string IniReadValue(string Section, string Key)
-        {
-            StringBuilder temp = new StringBuilder(255);
-            int i = GetPrivateProfileString(Section, Key, "", temp,
-                                            255, this.path);
-            return temp.ToString();
 
+        public Boolean setConfiguration(string ODBC, string UID, string Password)
+        {
+            if (String.IsNullOrWhiteSpace(ODBC) || String.IsNullOrWhiteSpace(UID) || String.IsNullOrWhiteSpace(Password))
+                return false;
+            if (!File.Exists(Environment.CurrentDirectory + "\\" + this.ConfigurationFile))
+            {
+                File.Create(ConfigurationFile).Close();
+                var parser = new FileIniDataParser();
+                IniData data = parser.ReadFile(ConfigurationFile);
+                data.Sections.AddSection("Base");
+                data.Sections.GetSectionData("Base").Keys.AddKey("ODBC", ODBC);
+                data.Sections.GetSectionData("Base").Keys.AddKey("UID", UID);
+                data.Sections.GetSectionData("Base").Keys.AddKey("PWD", Password);
+                parser.WriteFile(ConfigurationFile, data);
+            }
+            else
+            {
+                var parser = new FileIniDataParser();
+                IniData data = parser.ReadFile("config.ini");
+                data["Base"]["ODBC"] = ODBC;
+                data["Base"]["UID"] = UID;
+                data["Base"]["PWD"] = Password;
+                parser.WriteFile(ConfigurationFile, data);
+            }
+            return true;
+        }
+
+        private IniData readConfig()
+        {
+            if (File.Exists(Environment.CurrentDirectory + "\\" + this.ConfigurationFile))
+            {
+                FileIniDataParser parser = new FileIniDataParser();
+                IniData data = parser.ReadFile(ConfigurationFile);
+                ODBC = data["Base"]["ODBC"];
+                UID = data["Base"]["UID"];
+                Password = data["Base"]["PWD"];
+                return data;
+            }
+            else
+                return null;
         }
     }
 }
