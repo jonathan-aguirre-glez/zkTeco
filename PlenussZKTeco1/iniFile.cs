@@ -28,7 +28,8 @@ namespace PlenussZKTeco1
 
         }
 
-
+        /// <summary> 
+        /// Receives a file path to the Ini file.</summary> 
         public Boolean setConfiguration(string ODBC, string UID, string Password)
         {
             if (String.IsNullOrWhiteSpace(ODBC) || String.IsNullOrWhiteSpace(UID) || String.IsNullOrWhiteSpace(Password))
