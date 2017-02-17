@@ -15,9 +15,11 @@ using System.Data.Odbc;
 
 namespace PlenussZKTeco1
 {
+
     public partial class Main : Form
     {
-        ODBCWrapper conexion = new ODBCWrapper("config.ini");   
+        ODBCWrapper conexion = new ODBCWrapper("config.ini");
+        ContextMenu mnuContextMenu = new ContextMenu();
         public Main()
         {
             InitializeComponent();

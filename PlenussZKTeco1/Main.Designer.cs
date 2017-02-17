@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.configToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.configuracionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -36,19 +37,24 @@
             this.reportesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1 = new System.Windows.Forms.Panel();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.label1 = new System.Windows.Forms.Label();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.label2 = new System.Windows.Forms.Label();
             this.Dispositivo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.IP = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Puerto = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Alta = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Ultima_Lectura = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.label1 = new System.Windows.Forms.Label();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.label2 = new System.Windows.Forms.Label();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.activarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.verRegistrosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.Activo = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.menuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.panel2.SuspendLayout();
+            this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -105,7 +111,7 @@
             this.panel1.Controls.Add(this.label1);
             this.panel1.Location = new System.Drawing.Point(21, 27);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(675, 307);
+            this.panel1.Size = new System.Drawing.Size(762, 307);
             this.panel1.TabIndex = 1;
             // 
             // dataGridView1
@@ -117,11 +123,50 @@
             this.IP,
             this.Puerto,
             this.Alta,
-            this.Ultima_Lectura});
-            this.dataGridView1.Location = new System.Drawing.Point(17, 38);
+            this.Ultima_Lectura,
+            this.Activo});
+            this.dataGridView1.ContextMenuStrip = this.contextMenuStrip1;
+            this.dataGridView1.Location = new System.Drawing.Point(17, 28);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(643, 253);
+            this.dataGridView1.ReadOnly = true;
+            this.dataGridView1.Size = new System.Drawing.Size(742, 253);
             this.dataGridView1.TabIndex = 1;
+            // 
+            // Dispositivo
+            // 
+            this.Dispositivo.HeaderText = "Dispositivo";
+            this.Dispositivo.Name = "Dispositivo";
+            this.Dispositivo.ReadOnly = true;
+            // 
+            // Nombre
+            // 
+            this.Nombre.HeaderText = "Nombre";
+            this.Nombre.Name = "Nombre";
+            this.Nombre.ReadOnly = true;
+            // 
+            // IP
+            // 
+            this.IP.HeaderText = "IP";
+            this.IP.Name = "IP";
+            this.IP.ReadOnly = true;
+            // 
+            // Puerto
+            // 
+            this.Puerto.HeaderText = "Puerto";
+            this.Puerto.Name = "Puerto";
+            this.Puerto.ReadOnly = true;
+            // 
+            // Alta
+            // 
+            this.Alta.HeaderText = "Alta";
+            this.Alta.Name = "Alta";
+            this.Alta.ReadOnly = true;
+            // 
+            // Ultima_Lectura
+            // 
+            this.Ultima_Lectura.HeaderText = "Ultima Lectura";
+            this.Ultima_Lectura.Name = "Ultima_Lectura";
+            this.Ultima_Lectura.ReadOnly = true;
             // 
             // label1
             // 
@@ -135,9 +180,9 @@
             // panel2
             // 
             this.panel2.Controls.Add(this.label2);
-            this.panel2.Location = new System.Drawing.Point(755, 28);
+            this.panel2.Location = new System.Drawing.Point(789, 28);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(314, 306);
+            this.panel2.Size = new System.Drawing.Size(280, 306);
             this.panel2.TabIndex = 2;
             // 
             // label2
@@ -149,35 +194,31 @@
             this.label2.TabIndex = 0;
             this.label2.Text = "Lecturas";
             // 
-            // Dispositivo
+            // contextMenuStrip1
             // 
-            this.Dispositivo.HeaderText = "Dispositivo";
-            this.Dispositivo.Name = "Dispositivo";
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.activarToolStripMenuItem,
+            this.verRegistrosToolStripMenuItem});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(140, 48);
             // 
-            // Nombre
+            // activarToolStripMenuItem
             // 
-            this.Nombre.HeaderText = "Nombre";
-            this.Nombre.Name = "Nombre";
+            this.activarToolStripMenuItem.Name = "activarToolStripMenuItem";
+            this.activarToolStripMenuItem.Size = new System.Drawing.Size(139, 22);
+            this.activarToolStripMenuItem.Text = "Activar";
             // 
-            // IP
+            // verRegistrosToolStripMenuItem
             // 
-            this.IP.HeaderText = "IP";
-            this.IP.Name = "IP";
+            this.verRegistrosToolStripMenuItem.Name = "verRegistrosToolStripMenuItem";
+            this.verRegistrosToolStripMenuItem.Size = new System.Drawing.Size(139, 22);
+            this.verRegistrosToolStripMenuItem.Text = "Ver registros";
             // 
-            // Puerto
+            // Activo
             // 
-            this.Puerto.HeaderText = "Puerto";
-            this.Puerto.Name = "Puerto";
-            // 
-            // Alta
-            // 
-            this.Alta.HeaderText = "Alta";
-            this.Alta.Name = "Alta";
-            // 
-            // Ultima_Lectura
-            // 
-            this.Ultima_Lectura.HeaderText = "Ultima Lectura";
-            this.Ultima_Lectura.Name = "Ultima_Lectura";
+            this.Activo.HeaderText = "Column1";
+            this.Activo.Name = "Activo";
+            this.Activo.ReadOnly = true;
             // 
             // Main
             // 
@@ -198,6 +239,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
+            this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -222,5 +264,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Puerto;
         private System.Windows.Forms.DataGridViewTextBoxColumn Alta;
         private System.Windows.Forms.DataGridViewTextBoxColumn Ultima_Lectura;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem activarToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem verRegistrosToolStripMenuItem;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn Activo;
     }
 }
