@@ -57,6 +57,8 @@ namespace PlenussZKTeco1
             return true;
         }
 
+        /// <summary> 
+        /// Reads the config fule and returns the configuration.</summary> 
         private IniData readConfig()
         {
             if (File.Exists(Environment.CurrentDirectory + "\\" + this.ConfigurationFile))
