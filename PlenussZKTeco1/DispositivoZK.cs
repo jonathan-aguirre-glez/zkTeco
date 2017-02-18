@@ -17,6 +17,9 @@ namespace PlenussZKTeco1
 
         public DispositivoZK(string nombre, string IP, int Puerto)
         {
+            this.nombre = nombre;
+            this.IP = IP;
+            this.Puerto = Puerto;
         }
 
         /// <summary> 

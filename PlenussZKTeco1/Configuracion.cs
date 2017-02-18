@@ -47,7 +47,7 @@ namespace PlenussZKTeco1
             var main = (Main)Tag;
             main.Show();
             Close();
-            main.connect();
+            main.connectDB();
         }
     }
 }
